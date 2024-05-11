@@ -10,11 +10,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 
-<VBox  alignment="CENTER" styleClass="background" prefHeight="420.0" prefWidth="600.0" spacing="20"
-       xmlns:fx="http://javafx.com/fxml/1"
-       >
+<VBox styleClass="background" prefHeight="450.0" prefWidth="650.0" spacing="20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExploreTeamsController">
+    <ImageView fitHeight="225.0" fitWidth="650">
+        <image>
+            <Image url="view/NBA_Back.jpg"/>
+        </image>
+    </ImageView>
 
+    <GridPane alignment="CENTER" hgap="15" vgap="15">
+        <Button onAction="#teamsMenu" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="button" fx:id="teamsMenuButton" text="Teams Menu"/>
+        <Button GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="button" fx:id="viewPlayersButton" text="View Players"/>
+        <Button onAction="#close" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="button" fx:id="closeButton" text="Close"/>
+    </GridPane>
     
     <stylesheets>
         <URL value="@style.css"/>
