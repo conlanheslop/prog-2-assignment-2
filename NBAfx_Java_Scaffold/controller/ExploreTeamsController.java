@@ -37,9 +37,21 @@ public class ExploreTeamsController extends Controller<Teams> {
             Stage stage = new Stage();
             stage.setX(ViewLoader.X + 601);
             stage.setY(ViewLoader.Y);
-            stage.getIcons().add(new Image("/view/nba.png"));
-            
+            stage.getIcons().add(new Image("/view/edit.png"));
             ViewLoader.showStage(getTeams(), "/view/TeamsTable.fxml", "Teams Menu", stage);
+        } catch (IOException ex) {
+            Logger.getLogger(AssociationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    public void playersMenu() {
+        try {
+            Stage stage = new Stage();
+            stage.setX(ViewLoader.X + 601);
+            stage.setY(ViewLoader.Y);
+            stage.getIcons().add(new Image("/view/nba.png"));
+            ViewLoader.showStage(getTeams(), "/view/PlayersView.fxml", "Players", stage);
         } catch (IOException ex) {
             Logger.getLogger(AssociationController.class.getName()).log(Level.SEVERE, null, ex);
         }

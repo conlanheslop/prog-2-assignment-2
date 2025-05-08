@@ -14,8 +14,29 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>  
 
-<VBox styleClass="background"  alignment="CENTER" prefHeight="400" prefWidth="800" spacing="20" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="controller.TeamsRoundController" styleClass="background"  alignment="CENTER" prefHeight="400" prefWidth="800" spacing="20" xmlns:fx="http://javafx.com/fxml/1">
     
+    <Label fx:id="title" styleClass="label-h2"/>
+
+    <HBox alignment="CENTER">
+        <ListView fx:id="teamsLv" prefHeight="259.0" prefWidth="244.0">
+            <placeholder>
+                <Label text="All teams added to round." />
+            </placeholder>
+        </ListView>
+
+        <Button fx:id="moveButton" onAction="#move" text=">>>"/>
+
+        <TableView fx:id="roundTv">
+            <columns>
+                <TableColumn fx:id="gameColumn" text="Game"/>
+                <TableColumn fx:id="team1Column" text="Team-1"/>
+                <TableColumn fx:id="team2Column" text="Team-2"/>
+            </columns>
+        </TableView>
+    </HBox>
+
+    <Button fx:id="arrangeButton" onAction="#arrange" text="Arrange Season"/>
     
     <stylesheets>
         <URL value="@style.css"/>

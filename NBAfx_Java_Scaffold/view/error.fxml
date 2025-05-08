@@ -13,10 +13,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1"
-      alignment="center"
-      styleClass="background" spacing="10" prefHeight="300.0" prefWidth="350.0">
-	
+<VBox fx:controller="controller.ErrorController" xmlns:fx="http://javafx.com/fxml/1" alignment="center" styleClass="background" spacing="10" prefHeight="300.0" prefWidth="350.0">
+	<Label fx:id="message" styleClass="label-h2" text="Message"/>
+
+    <VBox fx:id="container" alignment="CENTER">
+        <!-- Added as they come -->
+    </VBox>
+
+    <Text text="" styleClass="text-out"/>
+    <Text text="" styleClass="text-out"/>
+    <Text text="" styleClass="text-out"/>
+    <Text text="" styleClass="text-out"/>
+    <Text text="" styleClass="text-out"/>
+
+    <Button fx:id="okayButton" styleClass="button" text="Okay" onAction="#close"/>
     
     <stylesheets>
         <URL value="@style.css"/>

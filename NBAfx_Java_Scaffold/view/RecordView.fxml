@@ -14,8 +14,29 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>  
 
-<VBox styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="500" spacing="20" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox fx:controller="controller.RecordController" styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="500" spacing="20" xmlns:fx="http://javafx.com/fxml/1" >
    
+    <Label text="Season Record" styleClass="label-h2"/>
+
+    <TableView fx:id="roundTv" styleClass="table-view" maxWidth="500" items="${controller.record}">
+        <columns>
+            <TableColumn text="Round" minWidth="125">
+                <cellValueFactory><PropertyValueFactory property="round"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Game" minWidth="125">
+                <cellValueFactory><PropertyValueFactory property="gameNumber"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Winning Team" minWidth="125">
+                <cellValueFactory><PropertyValueFactory property="winTeam"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Losing Team" minWidth="125">
+                <cellValueFactory><PropertyValueFactory property="loseTeam"/></cellValueFactory>
+            </TableColumn>
+        </columns>
+    </TableView>
+
+    <Button fx:id="closeButton" text="Close" styleClass="button" maxHeight="40" onAction="#close"/>
+
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>

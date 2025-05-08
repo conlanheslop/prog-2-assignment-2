@@ -11,10 +11,20 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox  alignment="CENTER" styleClass="background" prefHeight="450.0" prefWidth="350.0" spacing="20" xmlns:fx="http://javafx.com/fxml/1"
-       >
+<VBox  fx:controller="controller.SeasonController" alignment="CENTER" styleClass="background" prefHeight="450.0" prefWidth="350.0" spacing="20" xmlns:fx="http://javafx.com/fxml/1">
+    <ImageView fitWidth="350.0" fitHeight="175.0">
+        <image>
+            <Image url="view/NBA_Back.jpg"/>
+        </image>
+    </ImageView>
 
-    
+    <VBox alignment="CENTER" spacing="20">
+        <Button styleClass="button" fx:id="roundButton" text="Round" onAction="#round"> </Button>
+        <Button styleClass="button" fx:id="currentButton" text="Current" onAction="#current"> </Button>
+        <Button styleClass="button" fx:id="gameButton" text="Game" onAction="#game"> </Button>
+        <Button styleClass="button" fx:id="resultButton" text="Result" onAction="#result"> </Button>
+        <Button styleClass="button" fx:id="closeButton" text="Close" onAction="#close" > </Button>
+    </VBox>
         
     <stylesheets>
         <URL value="@style.css"/>

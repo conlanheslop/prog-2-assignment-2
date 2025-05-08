@@ -14,8 +14,29 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>  
 
-<VBox styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="400" spacing="20" xmlns:fx="http://javafx.com/fxml/1" >
+<VBox fx:controller="controller.CurrentRoundTeamsController" styleClass="background"  alignment="CENTER" prefHeight="300" prefWidth="450" spacing="20" xmlns:fx="http://javafx.com/fxml/1" >
    
+    <Label fx:id="title" text="${'Round: ' + controller.round}" styleClass="label-h2"/>
+
+    <TableView fx:id="roundTv" styleClass="table-view" items="${controller.schedule}">
+        <columns>
+            <TableColumn text="Team-1" minWidth="150">
+                <cellValueFactory><PropertyValueFactory property="team1"/></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="" minWidth="150">
+                <cellValueFactory><PropertyValueFactory property=""/></cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Team-2" minWidth="150">
+                <cellValueFactory><PropertyValueFactory property="team2"/></cellValueFactory>
+            </TableColumn>
+        </columns>
+        <placeholder>
+            <Label text="No teams to show"/>
+        </placeholder>
+    </TableView>
+
+    <Button fx:id="closeButton" text="Close" styleClass="button" onAction="#close"/>
+
     <stylesheets>
         <URL value="@style.css"/>
     </stylesheets>

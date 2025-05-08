@@ -22,7 +22,7 @@
 
     <GridPane alignment="CENTER" hgap="15" vgap="15">
         <Button onAction="#teamsMenu" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="button" fx:id="teamsMenuButton" text="Teams Menu"/>
-        <Button GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="button" fx:id="viewPlayersButton" text="View Players"/>
+        <Button onAction="#playersMenu" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="button" fx:id="viewPlayersButton" text="View Players"/>
         <Button onAction="#close" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="button" fx:id="closeButton" text="Close"/>
     </GridPane>
     

@@ -3,17 +3,26 @@ package controller;
 import au.edu.uts.ap.javafx.ViewLoader;
 import au.edu.uts.ap.javafx.Controller;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.property.ReadOnlyDoubleWrapper;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.*;
 import javafx.scene.image.Image;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import model.Teams;
-import model.Team;
+import model.*;
 
 public class TeamsController extends Controller<Teams> {
 
@@ -23,72 +32,68 @@ public class TeamsController extends Controller<Teams> {
     @FXML private Button closeButton;
     @FXML private GridPane buttonGrid;
 
-    @FXML private TableColumn<Team, String> teamNameColumn;
-    @FXML private TableColumn<Team, Integer> numberOfPlayersColumn;
-    @FXML private TableColumn<Team, Double> averagePlayerCreditColumn;
-    @FXML private TableColumn<Team, Integer> averageAgeColumn;
-
     @FXML private TableView<Team> teamsTv;
 
-    private Teams teamsModel;
+    public void initialize() {
+        manageButton.disableProperty().bind(Bindings.isEmpty(teamsTv.getSelectionModel().getSelectedItems()));
+        deleteButton.disableProperty().bind(Bindings.isEmpty(teamsTv.getSelectionModel().getSelectedItems()));
+        addButton.disableProperty().bind(Bindings.isNotEmpty(teamsTv.getSelectionModel().getSelectedItems()));
+    }
 
     public Teams getTeams() {
-        return this.model;
+        return model;
     }
 
-    public void setTeamsModel(Teams teamsModel) {
-        this.teamsModel = teamsModel;
-        teamsTv.setItems(teamsModel.currentTeams());
+    public ObservableList<Team> getTeam() {
+        return getTeams().currentTeams();
     }
 
-    @FXML
-    public void initialize() {
-        // teamNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        // numberOfPlayersColumn.setCellValueFactory(new PropertyValueFactory<>("numberOfPlayers"));
-        // averagePlayerCreditColumn.setCellValueFactory(new PropertyValueFactory<>("averagePlayerCredit"));
-        // averageAgeColumn.setCellValueFactory(new PropertyValueFactory<>("averageAge"));
+    public Team getSelectedTeam() {
+        return teamsTv.getSelectionModel().getSelectedItem();
     }
 
     @FXML public void addTeam() {
+        
         try {
               Stage stage = new Stage();
               stage.setX(ViewLoader.X + 601);
               stage.setY(ViewLoader.Y);
-              stage.getIcons().add(new Image("/view/nba.png"));
+              stage.getIcons().add(new Image("/view/edit.png"));
               ViewLoader.showStage(getTeams(), "/view/AddTeam.fxml", "Adding Team", stage);
         } catch (IOException ex) {
               Logger.getLogger(AssociationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
   
-    @FXML public void manageTeam() {
+    @FXML public void manageTeam(ActionEvent event) {
+        String name = getSelectedTeam().getName();
         try {
             Stage stage = new Stage();
             stage.setX(ViewLoader.X + 601);
             stage.setY(ViewLoader.Y);
-            stage.getIcons().add(new Image("/view/nba.png"));
-            ViewLoader.showStage(getTeams(), "/view/ManageTeam.fxml", "Managing Team: ", stage);
+            stage.getIcons().add(new Image("/view/edit.png"));
+            ViewLoader.showStage(getSelectedTeam(), "/view/ManageTeamView.fxml", "Managing Team: " + name, stage);
         } catch (IOException ex) {
             Logger.getLogger(AssociationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    @FXML public void deleteTeam() {
-        try {
-            Stage stage = new Stage();
-            stage.setX(ViewLoader.X + 601);
-            stage.setY(ViewLoader.Y);
-            stage.getIcons().add(new Image("/view/nba.png"));
-            ViewLoader.showStage(getTeams(), "/view/PlayersView.fxml", "View PLayers", stage);
-        } catch (IOException ex) {
-            Logger.getLogger(AssociationController.class.getName()).log(Level.SEVERE, null, ex);
+    @FXML public void deleteTeam(ActionEvent event) {
+        ObservableList<Team> teamsToKeep = FXCollections.observableArrayList();
+
+        for (Team team : getTeam()) {
+            if (!team.getName().equals(getSelectedTeam().getName())) {
+                teamsToKeep.add(team);
+            }
         }
+
+        getTeam().clear();
+        getTeam().addAll(teamsToKeep);
     }
 
     @FXML public void close() {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
     }
-
 }
 

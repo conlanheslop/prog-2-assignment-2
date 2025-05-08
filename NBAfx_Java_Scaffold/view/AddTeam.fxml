@@ -10,11 +10,20 @@
 <?import javafx.scene.image.*?> 
 <?import javafx.geometry.*?>
 
-<VBox  alignment="CENTER" styleClass="background" prefHeight="400.0" prefWidth="600.0" spacing="20" 
+<VBox  fx:controller="controller.AddTeamController" alignment="CENTER" styleClass="background" prefHeight="400.0" prefWidth="600.0" spacing="20" 
        xmlns:fx="http://javafx.com/fxml/1" >
     <padding>
         <Insets top="10" bottom="10" left="5" right="5" />
     </padding>
+
+    <Label fx:id="title" styleClass="label-h2" text="Team Details"/>
+
+    <HBox alignment="CENTER">
+        <Label fx:id="name" styleClass="label-opac" text="Name:"/>
+        <TextField fx:id="nameTf" styleClass="text-field"/>
+    </HBox>
+
+    <Button onAction="#add" fx:id="addButton" styleClass="button" text="Add"/>
    
    
     <stylesheets>
