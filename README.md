@@ -1,2 +1,2 @@
-# prog-2-assignment-2
+# Basketball Association
  GUI Update for Assignment 1 | Basketball Association
