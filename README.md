@@ -1,2 +1,2 @@
 # Basketball Association
- GUI Update for Assignment 1 | Basketball Association
+GUI Update for a console Basketball Manager application
